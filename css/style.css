@@ -1,0 +1,211 @@
+*{
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body{
+    background: url('https://fox5sandiego.com/wp-content/uploads/sites/15/2023/04/AdobeStock_102389785.jpeg?w=876&h=493&crop=1');
+    font-family: 'Times New Roman', Times, serif;
+    background-repeat: no-repeat;
+    background-size: cover;
+    overflow: hidden;
+    height: 100vh;
+}
+
+.container{
+    padding: 20px 20px;
+    color: white;
+}
+
+.current-info{
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+
+.date-container{
+    font-weight: 100;
+}
+
+.date-container .time{
+    font-size: 70px;
+}
+
+.date-container #am-pm{
+    font-size: 30px;
+    margin-left: 20px;
+}
+
+.date-container .date{
+    font-size: 30px;
+}
+
+.place-container{
+    text-align: end;
+}
+
+.place-container .time-zone{
+    font-size: 20px;
+    font-weight: 100;
+}
+
+.place-container .country{
+    font-size: 16px;
+    font-weight: 700;
+}
+
+.current-info .others{
+    display: flex;
+    flex-direction: column;
+    background-color: rgba(24, 24, 27, 0.6);
+    padding: 20px;
+    border-radius: 10px;
+    margin: 10px 0;
+    border: 1px solid whitesmoke;
+}
+
+.current-info .others .weather-item{
+    display: flex;
+    justify-content: space-between;
+}
+
+.future-forcast{
+    background-color: rgba(24, 24, 27, 0.6);
+    padding: 20px;
+    position: fixed;
+    bottom: 0;
+    display: flex;
+    color: white;
+    width: 100%;
+    align-items: center;
+    justify-content: center;
+}
+
+.future-forcast .today{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.future-forcast .today .day{
+    padding: 5px 15px;
+    background: rgba(21, 21, 27, 0.7);
+    border-radius: 50px;
+    text-align: center;
+}
+
+.future-forcast .today .temp{
+    font-size: 20px;
+    padding-top: 15px;
+}
+
+.future-forcast .weather-forecast{
+    display: flex;
+}
+
+.weather-forecast .weather-forcast-item{
+    display: flex;
+    flex-direction: column;
+    /* align-items: center;
+    justify-content: center; */
+    margin: 0 10px;
+    border: 1px solid whitesmoke;
+    border-radius: 10px;
+    padding: 5px;
+}
+
+.weather-forecast .weather-forcast-item .day{
+    padding: 5px 15px;
+    background-color: gray;
+    border-radius: 50px;
+    text-align: center;
+}
+
+.weather-forecast .weather-forcast-item {
+    font-weight: 100;
+    display: flex;
+
+}
+
+.weather-forcast-item .weather-item{
+    display: flex;
+    justify-content:space-between;
+
+}
+
+.weather-item div{
+    padding-left: 5px;
+    padding-right: 5px;
+}
+
+.search-form {
+    width: 60%;
+    text-align: center;
+}
+
+.search-form input[type=search]{
+    background-color: transparent;
+    color: white;
+    height: 35px;
+    width: 25%;
+    padding: 10px 10px;
+    border: 1px solid teal;
+    border-radius: 50px;
+}
+
+.search-form button{
+    height: 30px;
+    width: 60px;
+    margin-left: 5px;
+    background-color: transparent;
+    border-radius: 35px;
+    color: white;
+    border: 1px solid white;
+}
+
+.search-form button:hover{
+    background-color: gray;
+}
+
+.search-form input[type=search]:hover{
+    box-shadow: inset;
+}
+
+/* loading Animation */
+.loader{
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: white;
+    transition: opacity 0.75s, visibility 0.75s;
+}
+
+.loader-hidden{
+    opacity: 0;
+    visibility: hidden;
+}
+
+.loader::after{
+    content: "";
+    width: 75px;
+    height: 75px;
+    border: 15px solid #dddddd;
+    border-top-color: teal;
+    border-radius: 50%;
+    animation: loading 0.75s ease infinite;
+}
+
+@keyframes loading {
+    from{
+        transform: rotate(0turn);
+    }to{
+        transform: rotate(1turn);
+    }
+}
+/* End Of Loading Animation */

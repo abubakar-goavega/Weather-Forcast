@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/x-icon"
+        href="https://th.bing.com/th/id/OIP.C-bY3T4JkNDyl78yfUMRigAAAA?w=162&h=180&c=7&r=0&o=5&dpr=1.5&pid=1.7">
+    <title>Weather</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.9.0/css/all.min.css"
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="./css/style.css">
+    <link rel="stylesheet" href="./css/responsive.css">
+</head>
+
+<body>
+
+    <div class="container">
+        <div class="current-info">
+            <div class="date-container">
+                <div class="time" id="time">
+                    12:30 <span id="am-pm">PM</span>
+                </div>
+                <div class="date" id="date">
+                    Monday, 24 May
+                </div>                
+            </div>
+
+            <div class="search-form">
+                <form action="" method="get" id="form">
+                    <input type="search" name="searchbar" id="search" placeholder="Type City Name">
+                    <button type="button" id="searchbtn"><i class="fa fa-search" aria-hidden="true"></i></button>
+                </form>
+            </div>
+            <div class="place-container" >
+                <div class="time-zone" id="time-zone">Asia/Kolkata</div>
+                <div class="country" id="country">IN</div>
+            </div>
+        </div>
+    </div>
+    <div class="future-forcast">
+        <div class="weather-forecast" id="weather-forcast">
+            
+        </div>
+
+    </div>
+
+    <div class="loader"></div>
+
+    <script src="./dist/script.js" type="module"></script>
+    <script src="./dist/check.js" type="module"></script>
+</body>
+
+</html>

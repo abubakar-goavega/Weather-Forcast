@@ -7,41 +7,68 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
-var LoadingState;
-(function (LoadingState) {
-    LoadingState["LOADING"] = "loading";
-    LoadingState["DONE"] = "done";
-})(LoadingState || (LoadingState = {}));
-export class WeatherService {
-    constructor(APIKEY) {
-        this.APIKEY = APIKEY;
+export class Geocoding {
+    constructor(_apiKey) {
+        this._apiKey = _apiKey;
+        this.baseUrl = "http://api.openweathermap.org/geo/1.0/direct";
     }
-    getLatLonByCityName(cityName, url, limit) {
-        return __awaiter(this, void 0, void 0, function* () {
-            url = `${url}?q=${cityName}&limit=${limit}&appid=${this.APIKEY}`;
-            if (cityName.length === 0)
-                throw new Error("Provide City Name");
-            if (cityName.length <= 3)
-                throw new Error("Provide Proper City Name");
-            let res;
+    get getBaseUrl() {
+        return this.baseUrl;
+    }
+    set setBaseUrl(url) {
+        this.baseUrl = url;
+    }
+    urlBuilder(cityDetails, limit) {
+        const url = new URL(this.baseUrl);
+        url.searchParams.append('q', cityDetails);
+        url.searchParams.append('limit', limit + '');
+        url.searchParams.append('appid', this._apiKey);
+        return url;
+    }
+    validateCity(cityDetails) {
+        if (cityDetails.length === 0)
+            throw new Error("Provide City Name");
+        if (cityDetails.length <= 3)
+            throw new Error("Provide Proper City Name");
+    }
+    getCoordinates(cityDetails_1) {
+        return __awaiter(this, arguments, void 0, function* (cityDetails, limit = 1) {
+            this.validateCity(cityDetails);
+            const url = this.urlBuilder(cityDetails, limit);
             try {
-                res = yield fetch(url);
-                const json = yield res.json();
-                return json[0];
+                const response = yield fetch(url);
+                if (!response.ok)
+                    throw new Error(`Http error! status: ${response.status}`);
+                const data = yield response.json();
+                return data;
             }
             catch (error) {
-                console.log(error);
+                console.error(`Error fetching corrdinates:`, error);
+                throw error;
             }
-            return;
         });
     }
-    /**
-     * In Api We get 5 day forcast with 3 hours intervel that will be 40 dataset so to get only single day
-     * we first divide 40 / 5 will get 8 that will be intervel for each day
-     * 40 / 5 = 8
-     * 8 * 3 = 24
-     */
-    filterFiveDaysWeatherForcast(list) {
+}
+export class WeatherService {
+    constructor(_apiKey) {
+        this._apiKey = _apiKey;
+        this.baseUrl = "https://api.openweathermap.org/data/2.5/forecast";
+    }
+    get getBaseUrl() {
+        return this.baseUrl;
+    }
+    set setBaseUrl(url) {
+        this.baseUrl = url;
+    }
+    urlBuilder(coord) {
+        const url = new URL(this.baseUrl);
+        url.searchParams.append('lat', coord.lat + '');
+        url.searchParams.append('lon', coord.lon + '');
+        url.searchParams.append('appid', this._apiKey);
+        url.searchParams.append('units', 'metric');
+        return url;
+    }
+    getFilterFiveDaysWeatherForcast(list) {
         const foreCast = [];
         let index = 0;
         const noOfDays = 5;
@@ -53,16 +80,21 @@ export class WeatherService {
         foreCast.push(list[index - 1]);
         return foreCast;
     }
-    getWeatherData(url) {
+    getWeatherData(coord) {
         return __awaiter(this, void 0, void 0, function* () {
-            url = `${url}&appid=${this.APIKEY}&units=metric`;
+            const url = this.urlBuilder(coord);
             try {
-                const res = yield fetch(url);
-                const json = yield res.json();
-                return json;
+                const response = yield fetch(url);
+                if (!response.ok)
+                    throw new Error(`Http error! status: ${response.status}`);
+                const weatherData = yield response.json();
+                if (weatherData.cod !== "200")
+                    throw new Error(`Weather API Error: ${weatherData.message}`);
+                return weatherData;
             }
             catch (error) {
-                console.log(error);
+                console.error(`Error fetching corrdinates:`, error);
+                throw error;
             }
         });
     }

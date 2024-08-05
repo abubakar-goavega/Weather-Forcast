@@ -39,19 +39,17 @@ export type APIResponseList = {
 }
 
 export type ApiCityInfoObj = {
-  "city": {
     "id": number,
     "name": string,
     "coord": {
       "lat": number,
       "lon": number
-    },
+    }
     "country": string,
     "population": number,
     "timezone": number,
     "sunrise": number,
     "sunset": number
-  }
 }
 
 export type WeatherResponse = {
@@ -76,4 +74,11 @@ export type GeocodingResponse = {
 export type coords = {
   lat : number,
   lon : number
+}
+
+export type CityDetails = {
+  country : string,
+  name : string,
+  timezone : number,
+  coord : coords
 }

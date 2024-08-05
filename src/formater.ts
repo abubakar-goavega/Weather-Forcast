@@ -3,7 +3,7 @@ export class APIDateFormater {
     static readonly days: string[] = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
     static readonly months: string[] = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'June', 'July', 'Aug', 'Sept', 'Oct', 'Nov', 'Dec'];
 
-    private static formateDecimal(num: number): string | number {
+    static formateDecimal(num: number): string | number {
         return num >= 10 ? num : '0' + num;
     }
 

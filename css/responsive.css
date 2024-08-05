@@ -71,3 +71,12 @@
         margin: 20px 0px;
     }
 }
+
+@media screen and (min-width: 768px) and (max-width: 1024px) {   
+    .future-forcast{
+        justify-content: start;
+        align-items: none;
+        overflow-y:auto;
+    }
+  }
+ 

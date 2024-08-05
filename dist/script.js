@@ -46,7 +46,7 @@ window.addEventListener('load', () => {
 });
 function setWeatherFromUserLoc() {
     navigator.geolocation.getCurrentPosition((sucess) => {
-        console.log(sucess);
+        // console.log(sucess);
         if (forcasteEle != null) {
             forcasteEle.innerHTML = "";
             let { latitude: lat, longitude: lon } = sucess.coords;
@@ -73,7 +73,7 @@ if (searchBtn !== null)
                 };
                 const weatherData = yield weatherService.getWeatherData(coords);
                 foreCastUI.addFutureForecast(forcasteEle, weatherService.getFilterFiveDaysWeatherForcast(weatherData.list));
-                console.log(weatherData);
+                // console.log(weatherData)
                 foreCastUI.setCityDetails(timeZoneEle, zoneEle, weatherData.city);
                 foreCastUI.setLoader(loader, LoadingState.DONE);
             }

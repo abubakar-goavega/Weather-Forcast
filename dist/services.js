@@ -10,7 +10,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 export class Geocoding {
     constructor(_apiKey) {
         this._apiKey = _apiKey;
-        this.baseUrl = "http://api.openweathermap.org/geo/1.0/direct";
+        this.baseUrl = "https://api.openweathermap.org/geo/1.0/direct";
     }
     get getBaseUrl() {
         return this.baseUrl;

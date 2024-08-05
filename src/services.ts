@@ -3,7 +3,7 @@ import { APIResponseList, coords, GeocodingResponse, WeatherResponse } from "./t
 export class Geocoding {
     private baseUrl: string
     constructor(private _apiKey: string) {
-        this.baseUrl = "http://api.openweathermap.org/geo/1.0/direct";
+        this.baseUrl = "https://api.openweathermap.org/geo/1.0/direct";
     }
 
     get getBaseUrl() {

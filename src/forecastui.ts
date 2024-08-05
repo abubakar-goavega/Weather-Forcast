@@ -1,4 +1,4 @@
-import { APIDateFormater } from "./formater";
+import { APIDateFormater } from "./formater.js";
 import { APIResponseList, CityDetails } from "./types";
 
 export enum LoadingState {

@@ -1,7 +1,7 @@
-import { ForecastUI, LoadingState } from "./forecastui";
-import { APIDateFormater } from "./formater";
-import { Geocoding, WeatherService } from "./services";
-import { CityDetails, coords, GeocodingResponse } from "./types";
+import { ForecastUI, LoadingState } from "./forecastui.js";
+import { APIDateFormater } from "./formater.js";
+import { Geocoding, WeatherService } from "./services.js";
+import { coords, GeocodingResponse } from "./types.js";
 
 const timeEle = document.getElementById('time');
 const dateEle = document.getElementById('date');
@@ -51,7 +51,7 @@ function setWeatherFromUserLoc(): void {
             let { latitude: lat, longitude: lon } = sucess.coords;
             weatherService.getWeatherData({ lat, lon }).then((res) => {
                 foreCastUI.addFutureForecast(forcasteEle, weatherService.getFilterFiveDaysWeatherForcast(res.list));
-                foreCastUI.setCityDetails(timeZoneEle,zoneEle,res.city)
+                foreCastUI.setCityDetails(timeZoneEle, zoneEle, res.city)
             }).catch((error) => console.log(error))
         }
     });
@@ -74,13 +74,10 @@ if (searchBtn !== null)
                 const weatherData = await weatherService.getWeatherData(coords);
                 foreCastUI.addFutureForecast(forcasteEle, weatherService.getFilterFiveDaysWeatherForcast(weatherData.list));
                 // console.log(weatherData)
-                foreCastUI.setCityDetails(timeZoneEle,zoneEle,weatherData.city);
-                foreCastUI.setLoader(loader, LoadingState.DONE); 
+                foreCastUI.setCityDetails(timeZoneEle, zoneEle, weatherData.city);
+                foreCastUI.setLoader(loader, LoadingState.DONE);
             }
         } catch (error) {
             console.log(error);
         }
     });
-
-
-

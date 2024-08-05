@@ -1,5 +1,5 @@
 // Import necessary modules and classes
-import { WeatherService } from '../src/services'; // Adjust path if necessary
+import { WeatherService } from '../src/services'; 
 
 // Create a new instance of WeatherService
 const API_KEY = "71f03e740fd8efc745f7f544c0baa923"

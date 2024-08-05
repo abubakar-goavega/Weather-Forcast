@@ -1,5 +1,5 @@
 // APIDateFormater.test.ts
-import { APIDateFormater } from '../src/formater'; // Adjust the import path as needed
+import { APIDateFormater } from '../src/formater'; 
 
 describe('APIDateFormater', () => {
 

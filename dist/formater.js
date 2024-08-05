@@ -10,6 +10,9 @@ export class APIDateFormater {
             AMorPM = "PM";
             hour = APIDateFormater.formateDecimal(hour - 12);
         }
+        else if (hour == 12) {
+            AMorPM = "PM";
+        }
         else {
             hour = hour == 0 ? 12 : hour;
             hour = APIDateFormater.formateDecimal(hour);

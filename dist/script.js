@@ -53,7 +53,12 @@ function setWeatherFromUserLoc() {
             weatherService.getWeatherData({ lat, lon }).then((res) => {
                 foreCastUI.addFutureForecast(forcasteEle, weatherService.getFilterFiveDaysWeatherForcast(res.list));
                 foreCastUI.setCityDetails(timeZoneEle, zoneEle, res.city);
-            }).catch((error) => console.log(error));
+            }).catch((error) => {
+                console.log(error);
+                alert(error.message);
+                if (loader != null)
+                    foreCastUI.setLoader(loader, LoadingState.DONE);
+            });
         }
     });
 }
@@ -79,6 +84,9 @@ if (searchBtn !== null)
             }
         }
         catch (error) {
+            alert(error);
             console.log(error);
+            if (loader != null)
+                foreCastUI.setLoader(loader, LoadingState.DONE);
         }
     }));

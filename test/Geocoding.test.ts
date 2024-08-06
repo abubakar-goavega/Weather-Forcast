@@ -18,7 +18,7 @@ describe('Geocoding Class', () => {
     test('should build correct URL', () => {
         const city = 'London';
         const limit = 5;
-        const expectedUrl = `http://api.openweathermap.org/geo/1.0/direct?q=${city}&limit=${limit}&appid=${apiKey}`;
+        const expectedUrl = `https://api.openweathermap.org/geo/1.0/direct?q=${city}&limit=${limit}&appid=${apiKey}`;
         
         const url = geocoding.urlBuilder(city, limit);
         

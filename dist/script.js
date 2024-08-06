@@ -19,6 +19,7 @@ const timeZoneEle = document.getElementById('time-zone');
 const forcasteEle = document.getElementById('weather-forcast');
 const loader = document.querySelector(".loader");
 const zoneEle = document.getElementById('country');
+// exposing this because no backend is there to secure from personal api
 const API_KEY = "71f03e740fd8efc745f7f544c0baa923";
 const weatherService = new WeatherService(API_KEY);
 const foreCastUI = new ForecastUI();
@@ -60,6 +61,14 @@ function setWeatherFromUserLoc() {
                     foreCastUI.setLoader(loader, LoadingState.DONE);
             });
         }
+    }, (error) => {
+        console.log(error.message);
+        if (error.code === error.PERMISSION_DENIED)
+            alert("You have denied location access. To use this feature, please enable location permissions in your browser settings.");
+        else
+            alert(error.message);
+        if (loader != null)
+            foreCastUI.setLoader(loader, LoadingState.DONE);
     });
 }
 const searchBtn = document.getElementById('searchbtn');
@@ -80,13 +89,18 @@ if (searchBtn !== null)
                 foreCastUI.addFutureForecast(forcasteEle, weatherService.getFilterFiveDaysWeatherForcast(weatherData.list));
                 // console.log(weatherData)
                 foreCastUI.setCityDetails(timeZoneEle, zoneEle, weatherData.city);
+                searchInput.innerHTML = "";
                 foreCastUI.setLoader(loader, LoadingState.DONE);
             }
         }
         catch (error) {
-            alert(error);
+            if (error instanceof TypeError)
+                alert("Invalid city name or city name not present");
+            else
+                alert(error);
             console.log(error);
             if (loader != null)
                 foreCastUI.setLoader(loader, LoadingState.DONE);
+            window.location.reload();
         }
     }));

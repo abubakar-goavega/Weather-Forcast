@@ -93,13 +93,13 @@ if (searchBtn !== null)
                 foreCastUI.setLoader(loader, LoadingState.DONE);
             }
         } catch (error) {
-            if (error instanceof TypeError)
-                alert("Invalid city name or city name not present")
+            if (!navigator.onLine) {
+                alert("You are offline. Please check your internet connection.");
+            } else if (error instanceof TypeError)
+                alert("Invalid city name or city name not present");
             else
-                alert(error)
+                alert(error);
             console.log(error);
-            if (loader != null)
-                foreCastUI.setLoader(loader, LoadingState.DONE);
             window.location.reload();
         }
     });

@@ -1,6 +1,6 @@
 # Weather-Forcast
 ### Demo
-[View Demo]("https://abubakar-goavega.github.io/Weather-Forcast/)
+[View Demo](https://abubakar-goavega.github.io/Weather-Forcast/)
 
 >https://abubakar-goavega.github.io/Weather-Forcast/  
 Note to use its feature you to need to allow location

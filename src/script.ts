@@ -59,6 +59,11 @@ function setWeatherFromUserLoc(): void {
                 foreCastUI.setLoader(loader,LoadingState.DONE)
             })
         }
+    },(error) => {
+        console.log(error.message)
+        alert(error.message)
+        if(loader != null)
+            foreCastUI.setLoader(loader,LoadingState.DONE)
     });
 }
 

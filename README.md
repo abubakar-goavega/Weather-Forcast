@@ -43,9 +43,21 @@ For testing i am using jest package
 * Install jest
 ```bash
 npm install --save-dev jest
+npm install --save-dev jsdom
+npm install --save-dev jest-environment-jsdom
 ```
 
 * Running the test
+
+> Note: Before running tset cases you need to remove .js from the import statment of forecastui.ts file to avoid test file  
+File Path src -> forecastui.ts  
+[open forecastui.ts](./src/forecastui.ts)
+```js
+//Before
+import { APIDateFormater } from "./formater.js";
+//After
+import { APIDateFormater } from "./formater";
+```
 
 ```bash
 npm test
